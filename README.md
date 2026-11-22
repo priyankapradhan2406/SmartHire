@@ -1,44 +1,48 @@
 SmartHire – Recruitment Management System
 
-SmartHire is a web-based recruitment management dashboard designed to help recruiters organize job openings, manage candidate information, and review candidate skill matches.
+SmartHire is a web-based recruitment management system designed to simplify the hiring process by managing job openings, candidate registrations, and skill-based matching.
 
-Features
+🚀 Live Demo
+
+"Open SmartHire" (https://priyankapradhan2406.github.io/SmartHire/)
+
+✨ Features
 
 - Add and manage job openings
-- Register candidate details
+- Register candidates
 - Match candidate skills with job requirements
-- Calculate rule-based matching scores
-- Search candidates by name or skills
+- Calculate skill match percentages
+- Search and manage candidates
 - Update candidate application status
-- Track recruitment statistics
+- Dashboard with recruitment statistics
 - Save data using browser Local Storage
-- Responsive dashboard design
 
-Technologies Used
+🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 - Browser Local Storage
 
-How to Use
+💻 How to Use
 
-1. Open the SmartHire website.
-2. Add a job opening with its required skills.
-3. Register candidates and enter their skills.
-4. View their matching scores.
-5. Update candidate application statuses.
+1. Open the live demo.
+2. Add a job with its required skills.
+3. Register a candidate.
+4. Select the relevant job.
+5. View the candidate's skill match percentage.
+6. Manage candidate application status.
 
-Live Demo
+🎯 Project Objective
 
-https://priyankapradhan2406.github.io/SmartHire/
+The objective of SmartHire is to make recruitment management easier through a simple interface and skill-based candidate matching.
 
-Project Note
-
-SmartHire is a frontend prototype. Candidate matching currently uses rule-based skill comparison and does not use a real AI model or automated resume parsing.
-
-Developer
+👩‍💻 Developer
 
 Priyanka Pradhan
 
-BSc Computer Science Student
+B.Sc. Computer Science Student
+
+---
+
+⭐ If you find this project useful, feel free to explore the repository!
