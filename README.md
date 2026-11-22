@@ -37,6 +37,17 @@ SmartHire is a web-based recruitment management system designed to simplify the 
 
 The objective of SmartHire is to make recruitment management easier through a simple interface and skill-based candidate matching.
 
+## 📸 Project Screenshots
+
+### Dashboard
+![Dashboard](dashboard.png)
+
+### Add New Job
+![Add Job](add-job.png)
+
+### Candidate Management
+![Candidates](candidates.png)
+
 👩‍💻 Developer
 
 Priyanka Pradhan
