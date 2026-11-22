@@ -4,231 +4,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartHire 2.0 | Recruitment Intelligence Platform</title>
+<meta name="theme-color" content="#111827">
+<title>SmartHire 3.0 | Recruitment Intelligence</title>
 
 <style>
+:root {
+  --bg:#f4f6fb;
+  --surface:#ffffff;
+  --primary:#635bdb;
+  --primary-dark:#5148c7;
+  --text:#20243a;
+  --muted:#7b8298;
+  --border:#e7e9f2;
+  --green:#15966a;
+  --red:#dc5262;
+  --shadow:0 8px 25px rgba(30,40,80,.06);
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f5fb;
-  color: #20243a;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-header {
-  background: #fff;
-  padding: 20px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  border-bottom: 1px solid #e7e8f0;
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-  color: #635bdb;
-}
-
-header span {
-  color: #747b91;
-  font-size: 13px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
-.welcome {
-  margin-bottom: 25px;
-}
-
-.welcome h1 {
-  font-size: 27px;
-  margin-bottom: 8px;
-}
-
-.welcome p {
-  color: #747b91;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-bottom: 28px;
-}
-
-.stat-card, .panel {
-  background: white;
-  border: 1px solid #e7e8f0;
-  border-radius: 13px;
-  padding: 22px;
-}
-
-.stat-card p {
-  color: #747b91;
-  font-size: 14px;
-}
-
-.stat-card h2 {
-  font-size: 29px;
-  margin-top: 12px;
-}
-
-.panel {
-  margin-bottom: 25px;
-}
-
-.panel h2 {
-  font-size: 19px;
-  margin-bottom: 18px;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #e7e8f0;
-  border-radius: 8px;
-  outline: none;
-  background: white;
-  font-size: 14px;
-}
-
-input:focus, select:focus {
-  border-color: #635bdb;
-}
-
-.full {
-  grid-column: 1 / -1;
+button,input,select {
+  font:inherit;
 }
 
 button {
-  border: none;
-  padding: 11px 16px;
-  border-radius: 8px;
-  background: #635bdb;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 3px;
+  cursor:pointer;
+  border:0;
 }
 
-button:hover {
-  opacity: .85;
+.sidebar {
+  width:245px;
+  background:#17172f;
+  color:white;
+  position:fixed;
+  inset:0 auto 0 0;
+  padding:28px 18px;
+  display:flex;
+  flex-direction:column;
+  z-index:5;
 }
 
-.secondary {
-  background: #ecebff;
-  color: #635bdb;
+.brand {
+  font-size:25px;
+  font-weight:800;
+  padding:0 12px 35px;
 }
 
-.danger {
-  background: #ffe9ec;
-  color: #d94c5c;
+.brand span {
+  color:#9a91ff;
 }
 
-.success {
-  background: #e1f6ed;
-  color: #16865b;
+.nav-title {
+  color:#8585a5;
+  font-size:11px;
+  letter-spacing:1.5px;
+  padding:0 12px 12px;
 }
 
-.job-list, .candidate-list {
-  display: grid;
-  gap: 12px;
+.nav-link {
+  display:block;
+  padding:13px 14px;
+  margin:4px 0;
+  border-radius:9px;
+  color:#c4c4d9;
+  text-decoration:none;
+  font-size:14px;
+  transition:.2s;
 }
 
-.job-item, .candidate-item {
-  border: 1px solid #e7e8f0;
-  border-radius: 10px;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
+.nav-link:hover,.nav-link.active {
+  background:#343257;
+  color:white;
 }
 
-.job-item h3, .candidate-item h3 {
-  margin-bottom: 6px;
-  font-size: 16px;
+.sidebar-bottom {
+  margin-top:auto;
+  color:#9999b5;
+  font-size:12px;
+  padding:15px 12px;
+  line-height:1.7;
 }
 
-.muted {
-  color: #747b91;
-  font-size: 13px;
-  line-height: 1.6;
+.main {
+  margin-left:245px;
+  padding:30px;
+  max-width:1600px;
 }
 
-.match {
-  color: #16865b;
-  font-weight: bold;
-  margin-top: 6px;
+.topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:30px;
 }
 
-.toolbar {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
+.topbar h1 {
+  font-size:25px;
 }
 
-.status {
-  max-width: 160px;
+.topbar p {
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
 }
 
-.empty {
-  color: #747b91;
-  padding: 20px;
-  text-align: center;
-  border: 1px dashed #e7e8f0;
-  border-radius: 10px;
+.profile {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:white;
+  padding:9px 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:13px;
+}
+
+.avatar {
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#e9e7ff;
+  color:var(--primary);
+  font-weight:bold;
+}
+
+.welcome {
+  background:linear-gradient(120deg,#625bda,#8c6fe9);
+  color:white;
+  padding:27px;
+  border-radius:17px;
+  margin-bottom:25px;
+  box-shadow:var(--shadow);
+}
+
+.welcome h2 {
+  font-size:22px;
+  margin-bottom:9px;
+}
+
+.welcome p {
+  font-size:14px;
+  opacity:.9;
+  line-height:1.6;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+  margin-bottom:25px;
+}
+
+.stat-card {
+  background:white;
+  padding:21px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+.stat-card p {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat-card h2 {
+  font-size:30px;
+  margin-top:13px;
+}
+
+.stat-icon {
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:#eeedff;
+  color:var(--primary);
+  margin-bottom:14px;
+  font-size:19px;
+}
+
+.panel {
+  background:white;
+  padding:23px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  margin-bottom:23px;
+  box-shadow:var(--shadow);
+  scroll-margin-top:20px;
+}
+
+.panel-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.panel-heading h2 {
+  font-size:18px;
+}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.field label {
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+input,select {
+  width:100%;
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:white;
+  color:var(--text);
+  outline:none;
+  font-size:13px;
+}
+
+input:focus,select:focus {
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px #635bdb15;
+}
+
+.full {
+  grid-column:1/-1;
+}
+
+.btn {
+  padding:11px 16px;
+  border-radius:8px;
+  background:var(--primary);
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover {
+  background:var(--primary-dark);
+}
+
+.btn-light {
+  background:#eeedff;
+  color:var(--primary);
+}
+
+.btn-light:hover {
+  background:#dedcff;
+}
+
+.btn-danger {
+  background:#fff0f1;
+  color:var(--red);
+}
+
+.btn-danger:hover {
+  background:#ffe0e3;
+}
+
+.btn-green {
+  background:#e7f8f0;
+  color:var(--green);
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.list {
+  display:grid;
+  gap:12px;
+}
+
+.item {
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.item h3 {
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.item p {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.match {
+  color:var(--green)!important;
+  font-weight:700;
+  margin-top:5px;
+}
+
+.badge {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+  background:#eeedff;
+  color:var(--primary);
+}
+
+.toolbar {
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:12px;
+  margin-bottom:17px;
+}
+
+.empty {
+  text-align:center;
+  padding:30px 15px;
+  border:1px dashed var(--border);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:13px;
 }
 
 footer {
-  text-align: center;
-  padding: 25px;
-  color: #747b91;
-  font-size: 13px;
+  text-align:center;
+  color:var(--muted);
+  padding:20px;
+  font-size:12px;
 }
 
-@media(max-width: 800px) {
+.toast {
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  background:#20243a;
+  color:white;
+  padding:14px 20px;
+  border-radius:10px;
+  font-size:13px;
+  box-shadow:var(--shadow);
+  display:none;
+  z-index:20;
+}
+
+.toast.show {
+  display:block;
+}
+
+@media(max-width:1000px) {
+  .sidebar {
+    width:200px;
+  }
+  .main {
+    margin-left:200px;
+    padding:22px;
+  }
   .stats {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media(max-width: 520px) {
-  .stats, .form-grid, .toolbar {
-    grid-template-columns: 1fr;
+@media(max-width:650px) {
+  .sidebar {
+    position:static;
+    width:100%;
+    padding:15px;
   }
-
-  .welcome h1 {
-    font-size: 23px;
+  .brand {
+    padding:5px 8px 14px;
   }
-
-  .stat-card, .panel {
-    padding: 16px;
+  .nav-title,.sidebar-bottom {
+    display:none;
+  }
+  .nav-links {
+    display:flex;
+    gap:5px;
+    overflow-x:auto;
+  }
+  .nav-link {
+    white-space:nowrap;
+    font-size:12px;
+    padding:10px;
+  }
+  .main {
+    margin-left:0;
+    padding:17px;
+  }
+  .topbar h1 {
+    font-size:21px;
+  }
+  .profile {
+    display:none;
+  }
+  .stats {
+    gap:10px;
+  }
+  .stat-card {
+    padding:15px;
+  }
+  .stat-card h2 {
+    font-size:24px;
+  }
+  .panel {
+    padding:17px;
+  }
+  .form-grid,.toolbar {
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -236,83 +447,155 @@ footer {
 
 <body>
 
-<header>
-  <div class="logo">SmartHire.</div>
-  <span>Recruitment Intelligence Platform</span>
+<aside class="sidebar">
+  <div class="brand">Smart<span>Hire.</span></div>
+
+  <div class="nav-title">WORKSPACE</div>
+
+  <nav class="nav-links">
+    <a href="#dashboard" class="nav-link active">▦ Dashboard</a>
+    <a href="#jobs" class="nav-link">▤ Jobs</a>
+    <a href="#candidates" class="nav-link">♙ Candidates</a>
+    <a href="#register" class="nav-link">＋ Register</a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    SmartHire 3.0<br>
+    Recruitment Intelligence Platform<br>
+    Version 3.0
+  </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div>
+    <h1>Recruitment Dashboard</h1>
+    <p>Manage hiring operations from one place.</p>
+  </div>
+
+  <div class="profile">
+    <div class="avatar">SH</div>
+    <div>
+      <strong>HR Manager</strong><br>
+      <span style="color:#7b8298">Administrator</span>
+    </div>
+  </div>
 </header>
 
-<main class="container">
-
-<section class="welcome">
-  <h1>Welcome to SmartHire 👋</h1>
-  <p>Manage jobs, discover talent and simplify recruitment.</p>
+<section class="welcome" id="dashboard">
+  <h2>Welcome to SmartHire 👋</h2>
+  <p>Your intelligent recruitment workspace. Find talent, manage job openings and track candidate progress.</p>
 </section>
 
 <section class="stats">
   <div class="stat-card">
+    <div class="stat-icon">♙</div>
     <p>Total Candidates</p>
     <h2 id="totalCandidates">0</h2>
   </div>
 
   <div class="stat-card">
+    <div class="stat-icon">▤</div>
     <p>Active Jobs</p>
     <h2 id="totalJobs">0</h2>
   </div>
 
   <div class="stat-card">
+    <div class="stat-icon">✓</div>
     <p>Shortlisted</p>
     <h2 id="totalShortlisted">0</h2>
   </div>
 
   <div class="stat-card">
+    <div class="stat-icon">◎</div>
     <p>Average Match</p>
     <h2 id="averageMatch">0%</h2>
   </div>
 </section>
 
-<section class="panel">
-  <h2 id="jobFormTitle">＋ Create Job Opening</h2>
+<section class="panel" id="jobs">
+  <div class="panel-heading">
+    <h2>💼 Job Management</h2>
+    <span class="badge">Job Workspace</span>
+  </div>
 
   <form id="jobForm" class="form-grid">
-    <input id="jobTitle" placeholder="Job Title" required>
-    <input id="company" placeholder="Company Name" required>
-    <input id="location" placeholder="Job Location" required>
-    <input id="jobSkills" placeholder="Required Skills (Python, SQL)" required>
+    <div class="field">
+      <label>JOB TITLE</label>
+      <input id="jobTitle" placeholder="e.g. Data Analyst" required>
+    </div>
 
-    <div class="full">
-      <button type="submit" id="jobSubmit">Create Job Opening</button>
-      <button type="button" id="cancelEdit" class="secondary" hidden>
-        Cancel Edit
-      </button>
+    <div class="field">
+      <label>COMPANY NAME</label>
+      <input id="company" placeholder="e.g. Infosys" required>
+    </div>
+
+    <div class="field">
+      <label>LOCATION</label>
+      <input id="location" placeholder="e.g. Mumbai" required>
+    </div>
+
+    <div class="field">
+      <label>REQUIRED SKILLS</label>
+      <input id="jobSkills" placeholder="Python, SQL, Excel" required>
+    </div>
+
+    <div class="full actions">
+      <button class="btn" type="submit" id="jobSubmit">＋ Create Job</button>
+      <button class="btn btn-light" type="button" id="cancelEdit" hidden>Cancel</button>
     </div>
   </form>
+
+  <div class="panel-heading" style="margin-top:28px">
+    <h2>Available Job Openings</h2>
+    <span class="badge" id="jobCount">0 Jobs</span>
+  </div>
+
+  <div class="list" id="jobList"></div>
 </section>
 
-<section class="panel">
-  <h2>💼 Available Job Openings</h2>
-  <div id="jobList" class="job-list"></div>
-</section>
-
-<section class="panel">
-  <h2>＋ Register New Candidate</h2>
+<section class="panel" id="register">
+  <div class="panel-heading">
+    <h2>＋ Register Candidate</h2>
+    <span class="badge">Talent Registration</span>
+  </div>
 
   <form id="candidateForm" class="form-grid">
-    <input id="candidateName" placeholder="Candidate Full Name" required>
-    <input id="candidateEmail" type="email" placeholder="Email Address" required>
-    <input id="candidateSkills" placeholder="Skills (Python, JavaScript, SQL)" required>
-    <input id="candidateExperience" placeholder="Experience (e.g. Fresher, 1 year)">
+    <div class="field">
+      <label>FULL NAME</label>
+      <input id="candidateName" placeholder="Candidate name" required>
+    </div>
+
+    <div class="field">
+      <label>EMAIL ADDRESS</label>
+      <input id="candidateEmail" type="email" placeholder="name@example.com" required>
+    </div>
+
+    <div class="field">
+      <label>SKILLS</label>
+      <input id="candidateSkills" placeholder="Python, SQL, HTML" required>
+    </div>
+
+    <div class="field">
+      <label>EXPERIENCE</label>
+      <input id="candidateExperience" placeholder="Fresher / 1 year">
+    </div>
 
     <div class="full">
-      <button type="submit">Register Candidate</button>
+      <button class="btn" type="submit">Register Candidate →</button>
     </div>
   </form>
 </section>
 
-<section class="panel">
-  <h2>👥 Candidate Management</h2>
+<section class="panel" id="candidates">
+  <div class="panel-heading">
+    <h2>👥 Candidate Management</h2>
+    <span class="badge">Talent Database</span>
+  </div>
 
   <div class="toolbar">
-    <input id="searchInput" placeholder="Search candidates...">
+    <input id="searchInput" placeholder="Search by name, email or skill...">
 
     <select id="statusFilter">
       <option value="All">All Statuses</option>
@@ -322,67 +605,111 @@ footer {
     </select>
   </div>
 
-  <button id="exportBtn" class="success" type="button">
-    Export Candidates CSV
-  </button>
+  <div class="actions" style="margin-bottom:17px">
+    <button class="btn btn-green" id="exportBtn" type="button">↓ Export CSV</button>
+  </div>
 
-  <div id="candidateList" class="candidate-list" style="margin-top:16px"></div>
+  <div class="list" id="candidateList"></div>
 </section>
+
+<footer>
+  SmartHire 3.0 | Recruitment Intelligence Platform<br>
+  Developed as a Computer Science Project
+</footer>
 
 </main>
 
-<footer>
-  SmartHire 2.0 | Recruitment Intelligence Platform
-  <br>Developed as a Computer Science Project
-</footer>
+<div class="toast" id="toast"></div>
 
 <script>
+"use strict";
+
 const $ = id => document.getElementById(id);
 
-let jobs = JSON.parse(localStorage.getItem("smartHireJobs") || "[]");
-let candidates = JSON.parse(localStorage.getItem("smartHireCandidates") || "[]");
+function loadData(key) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch {
+    return [];
+  }
+}
+
+let jobs = loadData("smartHireJobs").map(job => ({
+  ...job,
+  id: String(job.id)
+}));
+
+let candidates = loadData("smartHireCandidates").map(candidate => ({
+  ...candidate,
+  id: String(candidate.id)
+}));
+
 let editingJobId = null;
 
+function createId() {
+  return crypto.randomUUID
+    ? crypto.randomUUID()
+    : Date.now().toString() + Math.random().toString(36).slice(2);
+}
+
 function saveData() {
-  localStorage.setItem("smartHireJobs", JSON.stringify(jobs));
-  localStorage.setItem("smartHireCandidates", JSON.stringify(candidates));
+  try {
+    localStorage.setItem("smartHireJobs", JSON.stringify(jobs));
+    localStorage.setItem("smartHireCandidates", JSON.stringify(candidates));
+  } catch {
+    showToast("Unable to save data in this browser.");
+  }
+}
+
+function showToast(message) {
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
 }
 
 function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   })[char]);
 }
 
 function normalizeSkills(value) {
-  return value.toLowerCase().split(",")
+  return String(value || "")
+    .toLowerCase()
+    .split(",")
     .map(skill => skill.trim())
     .filter(Boolean);
 }
 
 function calculateMatch(candidateSkills, requiredSkills) {
-  const candidate = normalizeSkills(candidateSkills);
+  const candidate = new Set(normalizeSkills(candidateSkills));
   const required = normalizeSkills(requiredSkills);
 
   if (!required.length) return 0;
 
-  const matched = required.filter(skill =>
-    candidate.includes(skill)
-  );
+  const matched = required.filter(skill => candidate.has(skill));
 
-  return Math.round((matched.length / required.length) * 100);
+  return Math.round(matched.length / required.length * 100);
 }
 
 function getBestMatch(candidate) {
   if (!jobs.length) return 0;
 
-  return Math.max(...jobs.map(job =>
-    calculateMatch(candidate.skills, job.skills)
-  ));
+  return Math.max(
+    ...jobs.map(job =>
+      calculateMatch(candidate.skills, job.skills)
+    )
+  );
 }
 
 function updateDashboard() {
@@ -393,48 +720,50 @@ function updateDashboard() {
     candidates.filter(c => c.status === "Shortlisted").length;
 
   const average = candidates.length
-    ? Math.round(candidates.reduce((sum, c) =>
-        sum + getBestMatch(c), 0) / candidates.length)
+    ? Math.round(
+        candidates.reduce((sum, c) => sum + getBestMatch(c), 0)
+        / candidates.length
+      )
     : 0;
 
   $("averageMatch").textContent = average + "%";
+  $("jobCount").textContent = jobs.length + " Jobs";
 }
 
 function renderJobs() {
   if (!jobs.length) {
     $("jobList").innerHTML =
-      '<div class="empty">No job openings available. Create your first job!</div>';
+      '<div class="empty">No job openings yet. Create your first job above.</div>';
     return;
   }
 
   $("jobList").innerHTML = jobs.map(job => `
-    <div class="job-item">
+    <article class="item">
       <div>
         <h3>${escapeHTML(job.title)}</h3>
-        <p class="muted">
-          ${escapeHTML(job.company)} · ${escapeHTML(job.location)}
-        </p>
-        <p class="muted">
-          Required Skills: ${escapeHTML(job.skills)}
-        </p>
+        <p>${escapeHTML(job.company)} · ${escapeHTML(job.location)}</p>
+        <p>Required Skills: ${escapeHTML(job.skills)}</p>
       </div>
 
       <div class="actions">
-        <button class="secondary" data-action="edit-job"
-          data-id="${escapeHTML(job.id)}">Edit</button>
+        <button type="button" class="btn btn-light"
+          data-action="edit-job" data-id="${escapeHTML(job.id)}">
+          Edit
+        </button>
 
-        <button class="danger" data-action="delete-job"
-          data-id="${escapeHTML(job.id)}">Delete</button>
+        <button type="button" class="btn btn-danger"
+          data-action="delete-job" data-id="${escapeHTML(job.id)}">
+          Delete
+        </button>
       </div>
-    </div>
+    </article>
   `).join("");
 }
 
 function resetJobForm() {
   $("jobForm").reset();
   editingJobId = null;
-  $("jobFormTitle").textContent = "＋ Create Job Opening";
-  $("jobSubmit").textContent = "Create Job Opening";
+  $("jobSubmit").textContent = "＋ Create Job";
   $("cancelEdit").hidden = true;
 }
 
@@ -442,19 +771,21 @@ $("jobForm").addEventListener("submit", event => {
   event.preventDefault();
 
   const job = {
-    id: editingJobId || String(Date.now()),
+    id: editingJobId || createId(),
     title: $("jobTitle").value.trim(),
     company: $("company").value.trim(),
     location: $("location").value.trim(),
     skills: $("jobSkills").value.trim()
   };
 
-  if (editingJobId) {
+  if (editingJobId !== null) {
     jobs = jobs.map(oldJob =>
-      oldJob.id === editingJobId ? job : oldJob
+      String(oldJob.id) === String(editingJobId) ? job : oldJob
     );
+    showToast("Job updated successfully!");
   } else {
     jobs.push(job);
+    showToast("New job created successfully!");
   }
 
   saveData();
@@ -464,39 +795,49 @@ $("jobForm").addEventListener("submit", event => {
 
 $("cancelEdit").addEventListener("click", resetJobForm);
 
+// Job edit and delete actions
 $("jobList").addEventListener("click", event => {
   const button = event.target.closest("button[data-action]");
   if (!button) return;
 
-  const id = button.dataset.id;
+  const id = String(button.dataset.id);
+  const action = button.dataset.action;
 
-  if (button.dataset.action === "edit-job") {
-    const job = jobs.find(item => item.id === id);
+  if (action === "edit-job") {
+    const job = jobs.find(item => String(item.id) === id);
     if (!job) return;
 
     editingJobId = id;
-
     $("jobTitle").value = job.title;
     $("company").value = job.company;
     $("location").value = job.location;
     $("jobSkills").value = job.skills;
-
-    $("jobFormTitle").textContent = "Edit Job Opening";
     $("jobSubmit").textContent = "Save Changes";
     $("cancelEdit").hidden = false;
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    $("jobForm").scrollIntoView({ behavior:"smooth" });
   }
 
-  if (button.dataset.action === "delete-job") {
-    if (!confirm("Delete this job opening?")) return;
+  if (action === "delete-job") {
+    const job = jobs.find(item => String(item.id) === id);
+    if (!job) {
+      showToast("Job not found.");
+      return;
+    }
 
-    jobs = jobs.filter(job => job.id !== id);
+    if (!confirm("Delete " + job.title + " permanently?")) return;
+
+    jobs = jobs.filter(item => String(item.id) !== id);
+
+    if (editingJobId === id) resetJobForm();
+
     saveData();
     refresh();
+    showToast("Job deleted successfully!");
   }
 });
 
+// Candidate registration
 $("candidateForm").addEventListener("submit", event => {
   event.preventDefault();
 
@@ -506,36 +847,36 @@ $("candidateForm").addEventListener("submit", event => {
   const experience = $("candidateExperience").value.trim();
 
   if (candidates.some(c => c.email.toLowerCase() === email)) {
-    alert("This candidate email is already registered.");
+    showToast("This email is already registered.");
     return;
   }
 
   candidates.push({
-    id: String(Date.now()),
+    id:createId(),
     name,
     email,
     skills,
     experience,
-    status: "Under Review"
+    status:"Under Review"
   });
 
   saveData();
   $("candidateForm").reset();
   refresh();
-
-  alert("Candidate registered successfully!");
+  showToast("Candidate registered successfully!");
 });
 
+// Candidate rendering
 function renderCandidates() {
-  const search = $("searchInput").value.toLowerCase();
+  const search = $("searchInput").value.trim().toLowerCase();
   const filter = $("statusFilter").value;
 
   const filtered = candidates.filter(candidate => {
-    const text = (
-      candidate.name + " " +
-      candidate.email + " " +
+    const text = [
+      candidate.name,
+      candidate.email,
       candidate.skills
-    ).toLowerCase();
+    ].join(" ").toLowerCase();
 
     return text.includes(search) &&
       (filter === "All" || candidate.status === filter);
@@ -548,19 +889,21 @@ function renderCandidates() {
   }
 
   $("candidateList").innerHTML = filtered.map(candidate => `
-    <div class="candidate-item">
+    <article class="item">
       <div>
         <h3>${escapeHTML(candidate.name)}</h3>
-        <p class="muted">${escapeHTML(candidate.email)}</p>
-        <p class="muted">Skills: ${escapeHTML(candidate.skills)}</p>
-        <p class="muted">Experience: ${escapeHTML(candidate.experience || "Not provided")}</p>
+        <p>${escapeHTML(candidate.email)}</p>
+        <p>Skills: ${escapeHTML(candidate.skills)}</p>
+        <p>Experience: ${escapeHTML(candidate.experience || "Not provided")}</p>
         <p class="match">Best Skill Match: ${getBestMatch(candidate)}%</p>
+        <span class="badge">${escapeHTML(candidate.status)}</span>
       </div>
 
-      <div>
-        <select class="status" data-action="change-status"
+      <div class="actions">
+        <select aria-label="Candidate status"
+          data-action="change-status"
           data-id="${escapeHTML(candidate.id)}">
-          ${["Under Review", "Shortlisted", "Rejected"].map(status => `
+          ${["Under Review","Shortlisted","Rejected"].map(status => `
             <option value="${status}"
               ${candidate.status === status ? "selected" : ""}>
               ${status}
@@ -568,53 +911,65 @@ function renderCandidates() {
           `).join("")}
         </select>
 
-        <button class="danger" data-action="delete-candidate"
-          data-id="${escapeHTML(candidate.id)}">Delete</button>
+        <button type="button" class="btn btn-danger"
+          data-action="delete-candidate"
+          data-id="${escapeHTML(candidate.id)}">
+          Delete
+        </button>
       </div>
-    </div>
+    </article>
   `).join("");
 }
 
+// Candidate status changes
 $("candidateList").addEventListener("change", event => {
-  const select = event.target.closest(
-    'select[data-action="change-status"]'
-  );
-
+  const select = event.target.closest('select[data-action="change-status"]');
   if (!select) return;
 
-  const candidate = candidates.find(c => c.id === select.dataset.id);
+  const candidate = candidates.find(
+    c => String(c.id) === String(select.dataset.id)
+  );
+
   if (!candidate) return;
 
   candidate.status = select.value;
   saveData();
   refresh();
+  showToast("Candidate status updated!");
 });
 
+// Candidate deletion
 $("candidateList").addEventListener("click", event => {
-  const button = event.target.closest(
-    'button[data-action="delete-candidate"]'
-  );
-
+  const button = event.target.closest('button[data-action="delete-candidate"]');
   if (!button) return;
 
-  if (!confirm("Delete this candidate?")) return;
+  const id = String(button.dataset.id);
+  const candidate = candidates.find(c => String(c.id) === id);
 
-  candidates = candidates.filter(c => c.id !== button.dataset.id);
+  if (!candidate) return;
+
+  if (!confirm("Delete candidate " + candidate.name + "?")) return;
+
+  candidates = candidates.filter(c => String(c.id) !== id);
+
   saveData();
   refresh();
+  showToast("Candidate deleted successfully!");
 });
 
+// Search and filter
 $("searchInput").addEventListener("input", renderCandidates);
 $("statusFilter").addEventListener("change", renderCandidates);
 
+// CSV export
 function exportCSV() {
   if (!candidates.length) {
-    alert("No candidates available to export.");
+    showToast("No candidates available to export.");
     return;
   }
 
   const headers = [
-    "Name", "Email", "Skills", "Experience", "Status", "Best Match"
+    "Name","Email","Skills","Experience","Status","Best Match"
   ];
 
   const rows = candidates.map(c => [
@@ -626,15 +981,15 @@ function exportCSV() {
     getBestMatch(c) + "%"
   ]);
 
-  const cell = value =>
-    '"' + String(value).replace(/"/g, '""') + '"';
+  const csvCell = value =>
+    '"' + String(value ?? "").replace(/"/g,'""') + '"';
 
-  const csv = [headers, ...rows]
-    .map(row => row.map(cell).join(","))
-    .join("\n");
+  const csv = [headers,...rows]
+    .map(row => row.map(csvCell).join(","))
+    .join("\r\n");
 
   const blob = new Blob(["\uFEFF" + csv], {
-    type: "text/csv;charset=utf-8;"
+    type:"text/csv;charset=utf-8;"
   });
 
   const url = URL.createObjectURL(blob);
@@ -642,19 +997,35 @@ function exportCSV() {
 
   link.href = url;
   link.download = "SmartHire_Candidates.csv";
+  document.body.appendChild(link);
   link.click();
+  link.remove();
 
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+  showToast("Candidate report exported!");
 }
 
 $("exportBtn").addEventListener("click", exportCSV);
 
+// Main refresh
 function refresh() {
   updateDashboard();
   renderJobs();
   renderCandidates();
 }
 
+// Navigation active state
+document.querySelectorAll(".nav-link").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelectorAll(".nav-link").forEach(item =>
+      item.classList.remove("active")
+    );
+    link.classList.add("active");
+  });
+});
+
+saveData();
 refresh();
 </script>
 
