@@ -1,131 +1,373 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartHire - Recruitment Management</title>
+<title>SmartHire | Recruitment Intelligence</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f3f5fb;color:#20243a}
-header{background:#171b35;color:white;padding:22px 6%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-header h1{font-size:25px}
-header p{color:#c3c8e0;font-size:13px;margin-top:5px}
-main{max-width:1200px;margin:28px auto;padding:0 18px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;margin-bottom:22px}
-.stat,.panel{background:white;border-radius:12px;padding:20px;box-shadow:0 3px 14px #20243a0d}
-.stat p{color:#737990;font-size:13px}
-.stat h2{font-size:29px;margin-top:12px;color:#5c55d9}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{margin-bottom:20px}
-h3{margin-bottom:16px;font-size:18px}
-label{font-size:13px;font-weight:bold;color:#50556d}
-input,select{width:100%;padding:12px;border:1px solid #dce0ed;border-radius:7px;margin:7px 0 13px;font-size:14px;background:white}
-button{border:0;padding:11px 15px;border-radius:7px;background:#5c55d9;color:white;cursor:pointer;font-weight:bold}
-button:hover{opacity:.88}
-.danger{background:#e64d62}
-.search{max-width:350px}
-.job{padding:13px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.job small{display:block;color:#85899a;margin-top:5px}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:680px}
-th,td{text-align:left;padding:13px 10px;border-bottom:1px solid #edf0f5;font-size:13px}
-th{color:#747990;background:#fafbfe}
-.match{font-weight:bold;color:#268a60}
-.empty{text-align:center;padding:22px;color:#85899a}
-footer{text-align:center;color:#85899a;font-size:12px;padding:25px}
-@media(max-width:700px){.layout{grid-template-columns:1fr}header{padding:20px}.stat h2{font-size:24px}}
+:root {
+  --primary: #635bdb;
+  --dark: #171a35;
+  --bg: #f4f5fb;
+  --muted: #777d95;
+  --border: #e8eaf2;
+  --green: #15966b;
+  --red: #df5365;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: #252943;
+}
+
+header {
+  background: var(--dark);
+  color: white;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo { font-size: 25px; font-weight: 800; }
+.logo span { color: #aaa3ff; }
+header p { color: #b9bdd1; font-size: 12px; margin-top: 5px; }
+
+.header-right {
+  background: #292d50;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-size: 12px;
+}
+
+main { max-width: 1250px; margin: 30px auto; padding: 0 18px; }
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.welcome h2 { font-size: 25px; }
+.welcome p { color: var(--muted); margin-top: 6px; font-size: 14px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.stat, .panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 21px;
+  box-shadow: 0 4px 18px #22254a08;
+}
+
+.stat .icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eeedff;
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  margin-bottom: 14px;
+}
+
+.stat p { color: var(--muted); font-size: 13px; }
+.stat h2 { font-size: 28px; margin-top: 8px; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.panel { margin-bottom: 20px; }
+h3 { font-size: 17px; margin-bottom: 18px; }
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #505570;
+  margin-top: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfe2ed;
+  border-radius: 8px;
+  margin-top: 7px;
+  margin-bottom: 8px;
+  background: white;
+  color: #252943;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #d7d3ff;
+  border-color: var(--primary);
+}
+
+button {
+  border: 0;
+  padding: 11px 16px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+button:hover { opacity: .88; transform: translateY(-1px); }
+form button { width: 100%; margin-top: 12px; }
+
+.danger { background: var(--red); }
+.success { background: var(--green); }
+.secondary { background: #ecebff; color: var(--primary); }
+
+.job {
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.job small {
+  display: block;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.job strong { font-size: 14px; }
+
+.job-actions { display: flex; gap: 7px; }
+
+.job button, .table-wrap button {
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.toolbar input { max-width: 300px; margin: 0; }
+.toolbar select { max-width: 180px; margin: 0; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 800px; }
+
+th, td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 12px;
+}
+
+th {
+  background: #fafaff;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.match { color: var(--green); font-weight: 800; }
+
+.pill {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #eeedff;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+  font-size: 12px;
+}
+
+@media(max-width: 800px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .layout { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 450px) {
+  .stats { gap: 9px; }
+  .stat { padding: 14px; }
+  .stat h2 { font-size: 23px; }
+  .welcome h2 { font-size: 21px; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
   <div>
-    <h1>SmartHire</h1>
-    <p>Recruitment Management Dashboard</p>
+    <div class="logo">Smart<span>Hire.</span></div>
+    <p>Recruitment Intelligence Platform</p>
   </div>
-  <span>HR Management System</span>
+  <div class="header-right">● HR Dashboard</div>
 </header>
 
 <main>
+
+  <section class="welcome">
+    <div>
+      <h2>Welcome to SmartHire 👋</h2>
+      <p>Manage jobs, discover talent and simplify recruitment.</p>
+    </div>
+    <span class="pill">Recruitment Management</span>
+  </section>
+
   <section class="stats">
-    <div class="stat"><p>Total Candidates</p><h2 id="totalCandidates">0</h2></div>
-    <div class="stat"><p>Active Jobs</p><h2 id="totalJobs">0</h2></div>
-    <div class="stat"><p>Shortlisted</p><h2 id="totalShortlisted">0</h2></div>
-    <div class="stat"><p>Average Match</p><h2 id="averageMatch">0%</h2></div>
+    <div class="stat">
+      <div class="icon">👥</div>
+      <p>Total Candidates</p>
+      <h2 id="totalCandidates">0</h2>
+    </div>
+    <div class="stat">
+      <div class="icon">💼</div>
+      <p>Active Jobs</p>
+      <h2 id="totalJobs">0</h2>
+    </div>
+    <div class="stat">
+      <div class="icon">⭐</div>
+      <p>Shortlisted</p>
+      <h2 id="totalShortlisted">0</h2>
+    </div>
+    <div class="stat">
+      <div class="icon">🎯</div>
+      <p>Average Match</p>
+      <h2 id="averageMatch">0%</h2>
+    </div>
   </section>
 
   <section class="layout">
+
     <div class="panel">
-      <h3>Add New Job</h3>
+      <h3>＋ Create Job Opening</h3>
       <form id="jobForm">
-        <label for="jobTitle">Job Title</label>
-        <input id="jobTitle" required placeholder="Frontend Developer">
+        <label>Job Title</label>
+        <input id="jobTitle" required placeholder="e.g. Data Analyst">
 
-        <label for="jobSkills">Required Skills</label>
-        <input id="jobSkills" required placeholder="HTML, CSS, JavaScript">
+        <label>Required Skills</label>
+        <input id="jobSkills" required placeholder="Python, SQL, Excel">
 
-        <label for="jobLocation">Location</label>
+        <label>Job Location</label>
         <input id="jobLocation" required placeholder="Mumbai">
 
-        <button type="submit">+ Add Job</button>
+        <button type="submit">Create Job Opening</button>
       </form>
     </div>
 
     <div class="panel">
-      <h3>Register Candidate</h3>
+      <h3>＋ Register New Candidate</h3>
       <form id="candidateForm">
-        <label for="candidateName">Full Name</label>
+        <label>Full Name</label>
         <input id="candidateName" required placeholder="Candidate name">
 
-        <label for="candidateEmail">Email Address</label>
-        <input id="candidateEmail" type="email" required placeholder="name@example.com">
+        <label>Email Address</label>
+        <input id="candidateEmail" type="email" required placeholder="email@example.com">
 
-        <label for="candidateSkills">Skills</label>
-        <input id="candidateSkills" required placeholder="HTML, CSS, JavaScript">
+        <label>Candidate Skills</label>
+        <input id="candidateSkills" required placeholder="Python, SQL, Excel">
 
-        <label for="candidateExperience">Experience (years)</label>
+        <label>Experience (years)</label>
         <input id="candidateExperience" type="number" min="0" max="60" value="0" required>
 
-        <label for="candidateJob">Select Job</label>
+        <label>Apply For</label>
         <select id="candidateJob" required>
-          <option value="">Add a job first</option>
+          <option value="">Create a job first</option>
         </select>
 
-        <button type="submit">+ Add Candidate</button>
+        <button type="submit">Register Candidate</button>
       </form>
+    </div>
+
+  </section>
+
+  <section class="panel">
+    <h3>💼 Available Job Openings</h3>
+    <div id="jobList">
+      <p class="empty">No job openings yet.</p>
     </div>
   </section>
 
   <section class="panel">
-    <h3>Job Openings</h3>
-    <div id="jobList"><p class="empty">No jobs added yet.</p></div>
-  </section>
+    <h3>👥 Candidate Management</h3>
 
-  <section class="panel">
-    <h3>Candidate Management</h3>
-    <input id="searchCandidates" class="search" placeholder="Search name, email or skills...">
+    <div class="toolbar">
+      <input id="searchCandidates" placeholder="Search candidates...">
+      <select id="statusFilter">
+        <option value="All">All statuses</option>
+        <option value="Under Review">Under Review</option>
+        <option value="Shortlisted">Shortlisted</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
 
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Name</th><th>Email</th><th>Skills</th>
-            <th>Job</th><th>Match</th><th>Status</th><th>Action</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Skills</th>
+            <th>Applied Job</th>
+            <th>Match</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="candidateTable">
-          <tr><td colspan="7" class="empty">No candidates registered yet.</td></tr>
+          <tr><td colspan="7" class="empty">No candidates registered.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
+
 </main>
 
 <footer>
-  SmartHire Recruitment Management System
-  <br><br>Built with HTML, CSS and JavaScript.
-  <br>Candidate matching uses rule-based skill comparison.
+  SmartHire Recruitment Intelligence Platform<br><br>
+  Built using HTML, CSS and JavaScript.<br>
+  Skill matching uses rule-based comparison, not a trained AI model.
 </footer>
 
 <script>
@@ -133,13 +375,10 @@ footer{text-align:center;color:#85899a;font-size:12px;padding:25px}
 
 const $ = id => document.getElementById(id);
 
-function makeId() {
-  return (window.crypto && crypto.randomUUID)
-    ? crypto.randomUUID()
-    : "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
-}
+const STORAGE_JOBS = "smartHireJobs";
+const STORAGE_CANDIDATES = "smartHireCandidates";
 
-function loadArray(key) {
+function loadData(key) {
   try {
     const data = JSON.parse(localStorage.getItem(key) || "[]");
     return Array.isArray(data) ? data : [];
@@ -148,33 +387,42 @@ function loadArray(key) {
   }
 }
 
-let jobs = loadArray("smartHireJobs");
-let candidates = loadArray("smartHireCandidates");
+let jobs = loadData(STORAGE_JOBS);
+let candidates = loadData(STORAGE_CANDIDATES);
+
+function makeId() {
+  return window.crypto?.randomUUID?.() ||
+    "id-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+}
 
 function saveData() {
   try {
-    localStorage.setItem("smartHireJobs", JSON.stringify(jobs));
-    localStorage.setItem("smartHireCandidates", JSON.stringify(candidates));
+    localStorage.setItem(STORAGE_JOBS, JSON.stringify(jobs));
+    localStorage.setItem(STORAGE_CANDIDATES, JSON.stringify(candidates));
   } catch (error) {
-    alert("Your browser could not save the data. Check available storage.");
+    alert("Could not save data in this browser.");
   }
 }
 
 function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
   })[char]);
+}
+
+function normalizeSkill(skill) {
+  return skill.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
 function getSkills(value) {
   return [...new Set(
     String(value || "")
       .split(",")
-      .map(skill => skill.trim().toLowerCase())
+      .map(normalizeSkill)
       .filter(Boolean)
   )];
 }
@@ -185,13 +433,13 @@ function calculateMatch(candidate, job) {
   const required = getSkills(job.skills);
   const available = getSkills(candidate.skills);
 
-  if (required.length === 0) return 0;
+  if (!required.length) return 0;
 
   const matched = required.filter(skill =>
     available.includes(skill)
   ).length;
 
-  return Math.round((matched / required.length) * 100);
+  return Math.round(matched / required.length * 100);
 }
 
 function updateDashboard() {
@@ -201,13 +449,15 @@ function updateDashboard() {
   });
 
   const average = scores.length
-    ? Math.round(scores.reduce((total, score) => total + score, 0) / scores.length)
+    ? Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
     : 0;
 
   $("totalCandidates").textContent = candidates.length;
   $("totalJobs").textContent = jobs.length;
+
   $("totalShortlisted").textContent =
     candidates.filter(c => c.status === "Shortlisted").length;
+
   $("averageMatch").textContent = average + "%";
 }
 
@@ -217,26 +467,28 @@ function renderJobs() {
       <div class="job">
         <div>
           <strong>${escapeHTML(job.title)}</strong>
-          <small>${escapeHTML(job.location)} · ${escapeHTML(job.skills)}</small>
+          <small>📍 ${escapeHTML(job.location)}</small>
+          <small>Skills: ${escapeHTML(job.skills)}</small>
         </div>
-        <button type="button" class="danger"
-          data-action="delete-job" data-id="${escapeHTML(job.id)}">
-          Delete
-        </button>
+        <div class="job-actions">
+          <button class="danger" data-action="delete-job"
+            data-id="${escapeHTML(job.id)}">Delete</button>
+        </div>
       </div>
     `).join("")
-    : '<p class="empty">No jobs added yet.</p>';
+    : '<p class="empty">No job openings yet. Create your first job above.</p>';
 
   $("candidateJob").innerHTML = jobs.length
     ? '<option value="">Select a job</option>' +
       jobs.map(job => `
         <option value="${escapeHTML(job.id)}">${escapeHTML(job.title)}</option>
       `).join("")
-    : '<option value="">Add a job first</option>';
+    : '<option value="">Create a job first</option>';
 }
 
 function renderCandidates() {
   const query = $("searchCandidates").value.trim().toLowerCase();
+  const status = $("statusFilter").value;
 
   const filtered = candidates.filter(candidate => {
     const searchable = [
@@ -245,7 +497,8 @@ function renderCandidates() {
       candidate.skills
     ].join(" ").toLowerCase();
 
-    return searchable.includes(query);
+    return searchable.includes(query) &&
+      (status === "All" || candidate.status === status);
   });
 
   $("candidateTable").innerHTML = filtered.length
@@ -258,20 +511,20 @@ function renderCandidates() {
             <td><strong>${escapeHTML(candidate.name)}</strong></td>
             <td>${escapeHTML(candidate.email)}</td>
             <td>${escapeHTML(candidate.skills)}</td>
-            <td>${escapeHTML(job ? job.title : "Job unavailable")}</td>
+            <td>${escapeHTML(job?.title || "Unavailable")}</td>
             <td class="match">${score}%</td>
             <td>
-              <select aria-label="Candidate status"
-                data-action="change-status" data-id="${escapeHTML(candidate.id)}">
+              <select data-action="status"
+                data-id="${escapeHTML(candidate.id)}"
+                aria-label="Candidate status">
                 <option value="Under Review" ${candidate.status === "Under Review" ? "selected" : ""}>Under Review</option>
                 <option value="Shortlisted" ${candidate.status === "Shortlisted" ? "selected" : ""}>Shortlisted</option>
+                <option value="Rejected" ${candidate.status === "Rejected" ? "selected" : ""}>Rejected</option>
               </select>
             </td>
             <td>
-              <button type="button" class="danger"
-                data-action="delete-candidate" data-id="${escapeHTML(candidate.id)}">
-                Delete
-              </button>
+              <button class="danger" data-action="delete-candidate"
+                data-id="${escapeHTML(candidate.id)}">Delete</button>
             </td>
           </tr>
         `;
@@ -289,33 +542,41 @@ function refresh() {
 $("jobForm").addEventListener("submit", event => {
   event.preventDefault();
 
-  const job = {
+  const title = $("jobTitle").value.trim();
+  const skills = $("jobSkills").value.trim();
+  const location = $("jobLocation").value.trim();
+
+  if (!title || !skills || !location) {
+    alert("Please complete all job fields.");
+    return;
+  }
+
+  jobs.push({
     id: makeId(),
-    title: $("jobTitle").value.trim(),
-    skills: $("jobSkills").value.trim(),
-    location: $("jobLocation").value.trim()
-  };
+    title,
+    skills,
+    location
+  });
 
-  if (!job.title || !job.skills || !job.location) return;
-
-  jobs.push(job);
   $("jobForm").reset();
   refresh();
+  alert("Job opening created successfully!");
 });
 
 $("candidateForm").addEventListener("submit", event => {
   event.preventDefault();
 
   const jobId = $("candidateJob").value;
+  const email = $("candidateEmail").value.trim().toLowerCase();
 
   if (!jobs.some(job => job.id === jobId)) {
     alert("Please select a valid job.");
     return;
   }
 
-  const email = $("candidateEmail").value.trim().toLowerCase();
-
-  if (candidates.some(c => c.email.toLowerCase() === email)) {
+  if (candidates.some(candidate =>
+    candidate.email.toLowerCase() === email
+  )) {
     alert("This email is already registered.");
     return;
   }
@@ -332,9 +593,9 @@ $("candidateForm").addEventListener("submit", event => {
 
   $("candidateForm").reset();
   refresh();
+  alert("Candidate registered successfully!");
 });
 
-// One delegated click handler for all Delete buttons.
 document.addEventListener("click", event => {
   const button = event.target.closest("button[data-action]");
   if (!button) return;
@@ -343,36 +604,27 @@ document.addEventListener("click", event => {
   const action = button.dataset.action;
 
   if (action === "delete-candidate") {
-    if (!candidates.some(c => c.id === id)) {
-      alert("Candidate not found.");
-      return;
-    }
-
-    if (!confirm("Are you sure you want to delete this candidate?")) return;
+    if (!confirm("Delete this candidate?")) return;
 
     candidates = candidates.filter(c => c.id !== id);
     refresh();
-    alert("Candidate deleted successfully!");
   }
 
   if (action === "delete-job") {
     if (candidates.some(c => c.jobId === id)) {
-      alert("This job has candidates. Delete or reassign them first.");
+      alert("This job has candidates. Delete those candidates first.");
       return;
     }
 
-    if (!jobs.some(j => j.id === id)) return;
-    if (!confirm("Are you sure you want to delete this job?")) return;
+    if (!confirm("Delete this job opening?")) return;
 
     jobs = jobs.filter(j => j.id !== id);
     refresh();
-    alert("Job deleted successfully!");
   }
 });
 
-// Update candidate status.
 document.addEventListener("change", event => {
-  const select = event.target.closest('select[data-action="change-status"]');
+  const select = event.target.closest('select[data-action="status"]');
   if (!select) return;
 
   const candidate = candidates.find(c => c.id === select.dataset.id);
@@ -383,9 +635,10 @@ document.addEventListener("change", event => {
 });
 
 $("searchCandidates").addEventListener("input", renderCandidates);
+$("statusFilter").addEventListener("change", renderCandidates);
 
 refresh();
 </script>
+
 </body>
 </html>
-
